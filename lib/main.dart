@@ -1,15 +1,41 @@
 import 'package:coffee_shop_demo/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import 'constant_data/constant_assets.dart';
+
 void main() {
+
+  configLoading();
 
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
     ScreenBreakpoints(desktop: 800, tablet: 550, watch: 200),
   );
 
   runApp(const MyApp());
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorWidget = Image.asset(
+      ConstantAssets.loaderGif,
+      height: 100.0,
+      width: 100.0,
+    )
+    ..loadingStyle = EasyLoadingStyle.light
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.transparent
+    ..indicatorColor = Colors.yellow
+    ..textColor = Colors.yellow
+    ..maskColor = Colors.blue.withValues(alpha: 0.5)
+    ..userInteractions = true
+    ..dismissOnTap = false;
 }
 
 class MyApp extends StatelessWidget {
@@ -19,13 +45,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Coffee Demo',
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
       initialRoute: AppPages.initial,
       defaultTransition: Transition.fade,
       getPages: AppPages.routes,
+      builder: EasyLoading.init(),
+      localizationsDelegates: const [
+        FormBuilderLocalizations.delegate,
+      ],
     );
   }
 }

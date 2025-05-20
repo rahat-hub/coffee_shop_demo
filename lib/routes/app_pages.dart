@@ -1,3 +1,5 @@
+import 'package:coffee_shop_demo/modules/login_and_registration/login_and_registration_binding.dart';
+import 'package:coffee_shop_demo/modules/login_and_registration/login_and_registration_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/splash/splash_binding.dart';
@@ -13,6 +15,12 @@ class AppPages {
       name: Routes.splash,
       page: () => SplashViewPage(),
       binding: SplashBinding(),
+    ),
+
+    GetPage(
+      name: Routes.loginAndRegistration,
+      page: () => LoginAndRegistrationViewPage(),
+      binding: LoginAndRegistrationBinding(),
     ),
 
     // GetPage(

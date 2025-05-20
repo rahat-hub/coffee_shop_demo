@@ -11,52 +11,59 @@ class SplashPage extends GetView<SplashLogic> {
   @override
   Widget build(BuildContext context) {
     Get.find<SplashLogic>();
-    return IntroductionScreen(
-      pages: [
-        PageViewModel(
-          title: "Welcome to CoffeeTime",
-          body: "Your daily dose of freshly brewed coffee, delivered hot.",
-          image: Center(child: Icon(Icons.emoji_food_beverage, size: 120, color: Colors.brown)),
-          decoration: getPageDecoration(),
-        ),
-        PageViewModel(
-          title: "Choose Your Brew",
-          body: "Browse a wide selection of coffee styles and flavors.",
-          image: Center(child: Icon(Icons.coffee, size: 120, color: Colors.brown)),
-          decoration: getPageDecoration(),
-        ),
-        PageViewModel(
-          title: "Fast & Fresh Delivery",
-          body: "Get your coffee on time, every time.",
-          image: Center(child: Icon(Icons.delivery_dining, size: 120, color: Colors.brown)),
-          decoration: getPageDecoration(),
-        ),
-      ],
-      onDone: () {
-        Get.offNamed(Routes.dashBoard);
-      },
-      showSkipButton: true,
-      skip: Text("Skip"),
-      next: Icon(Icons.arrow_forward),
-      done: Text("Start", style: TextStyle(fontWeight: FontWeight.bold)),
-      dotsDecorator: getDotDecoration(),
-    );
+    return Obx(() {
+      return controller.isLoading.isFalse ? IntroductionScreen(
+        pages: [
+          PageViewModel(
+            title: "Welcome to CoffeeTime",
+            body: "Your daily dose of freshly brewed coffee, delivered hot.",
+            image: Center(child: Icon(
+                Icons.emoji_food_beverage, size: 120, color: Colors.white)),
+            decoration: getPageDecoration(),
+          ),
+          PageViewModel(
+            title: "Choose Your Brew",
+            body: "Browse a wide selection of coffee styles and flavors.",
+            image: Center(
+                child: Icon(Icons.coffee, size: 120, color: Colors.white)),
+            decoration: getPageDecoration(),
+          ),
+          PageViewModel(
+            title: "Fast & Fresh Delivery",
+            body: "Get your coffee on time, every time.",
+            image: Center(child: Icon(
+                Icons.delivery_dining, size: 120, color: Colors.white)),
+            decoration: getPageDecoration(),
+          ),
+        ],
+        onDone: () => Get.offNamed(Routes.loginAndRegistration),
+        onSkip: () => Get.offNamed(Routes.loginAndRegistration),
+        showSkipButton: true,
+        skip: Text("Skip", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+        next: Icon(Icons.arrow_forward, size: 25),
+        done: Text("Start", style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+        dotsDecorator: getDotDecoration(),
+        globalBackgroundColor: Colors.brown[600],
+      ) : SizedBox();
+    });
   }
 
-  PageDecoration getPageDecoration() => PageDecoration(
-    titleTextStyle: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-    bodyTextStyle: TextStyle(fontSize: 18),
-    imagePadding: EdgeInsets.all(24),
-    //pageColor: Colors.brown.shade50,
-  );
+  PageDecoration getPageDecoration() =>
+      PageDecoration(
+        titleTextStyle: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+        bodyTextStyle: TextStyle(fontSize: 18),
+        imagePadding: EdgeInsets.all(24),
+        //pageColor: Colors.brown.shade50,
+      );
 
-  DotsDecorator getDotDecoration() => DotsDecorator(
-    activeColor: Colors.brown,
-    size: Size(10, 10),
-    activeSize: Size(22, 10),
-    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-  );
-
+  DotsDecorator getDotDecoration() =>
+      DotsDecorator(
+        activeColor: Colors.brown[200],
+        size: Size(15, 15),
+        activeSize: Size(25, 10),
+        activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24)),
+      );
 
 
 }
