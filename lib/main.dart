@@ -7,12 +7,20 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'constant_data/constant_assets.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
 
   configLoading();
 
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
     ScreenBreakpoints(desktop: 800, tablet: 550, watch: 200),
+  );
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   runApp(const MyApp());
