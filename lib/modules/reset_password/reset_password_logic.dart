@@ -1,23 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+
 import '../../helper/loader.dart';
 
-class LoginAndRegistrationLogic extends GetxController {
+class ResetPasswordLogic extends GetxController {
 
   RxBool isLoading = false.obs;
-
-  RxBool isLogin = true.obs;
-
-
-  //final GlobalKey formKey = GlobalKey<FormBuilderState>();
-
-  RxMap<String, GlobalKey<FormState>> formKey = <String, GlobalKey<FormState>>{}.obs;
-  RxMap<String, TextEditingController> loginAndRegistrationController = <String, TextEditingController>{}.obs;
-
-  RxBool obscurePassword = true.obs;
-
-  RxString emailError = ''.obs;
 
   @override
   void onInit() async {
@@ -40,9 +28,4 @@ class LoginAndRegistrationLogic extends GetxController {
     // TODO: implement onClose
     super.onClose();
   }
-
-  void togglePasswordVisibility() {
-    obscurePassword.value = !obscurePassword.value;
-  }
-
 }

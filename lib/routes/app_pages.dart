@@ -2,6 +2,8 @@ import 'package:coffee_shop_demo/modules/login_and_registration/login_and_regist
 import 'package:coffee_shop_demo/modules/login_and_registration/login_and_registration_view.dart';
 import 'package:get/get.dart';
 
+import '../modules/reset_password/reset_password_binding.dart';
+import '../modules/reset_password/reset_password_view.dart';
 import '../modules/splash/splash_binding.dart';
 import '../modules/splash/splash_view.dart';
 import 'app_routes.dart';
@@ -21,6 +23,12 @@ class AppPages {
       name: Routes.loginAndRegistration,
       page: () => LoginAndRegistrationViewPage(),
       binding: LoginAndRegistrationBinding(),
+    ),
+
+    GetPage(
+      name: Routes.resetPassword,
+      page: () => ResetPasswordViewPage(),
+      binding: ResetPasswordBinding(),
     ),
 
     // GetPage(
